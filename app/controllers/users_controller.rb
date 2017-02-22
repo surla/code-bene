@@ -4,12 +4,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_parems)
+    @user = User.new(user_params)
     if user.save
-      sessions[:user_id] = user.id
-      redirect to 'user_new_path'
+      redirect to @user
     else
-      render '/signup'
+      render signup_path
     end
   end
 
